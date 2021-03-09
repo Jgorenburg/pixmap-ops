@@ -57,7 +57,7 @@ Invert:
 
 Invert performs the operation I' = 255 - I on every pixel in the image and returns a new image.
 
-![alt text](../images/invert.ppm)
+![alt text](https://github.com/Jgorenburg/pixmap-ops/blob/feep.ppm)
 
 Channelshift:
 
