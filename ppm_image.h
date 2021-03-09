@@ -5,21 +5,23 @@
 
 #pragma once
 #include <string>
+#include <list>
 
 namespace agl
 {
   struct ppm_pixel
   {
-     unsigned char r;
-     unsigned char g;
-     unsigned char b;
+     int r;
+     int g;
+     int b;
   };
 
   class ppm_image
   {
+
   public:
      ppm_image();
-     ppm_image(int width, int height);
+     ppm_image(int height, int width);
      ppm_image(const ppm_image& orig);
      ppm_image& operator=(const ppm_image& orig);
 
@@ -40,7 +42,7 @@ namespace agl
      ppm_image flip_horizontal() const;
 
      // Return a sub-image having the given top,left coordinate and (width, height)
-     ppm_image subimage(int x, int y, int w, int h) const;
+     ppm_image subimage(int x, int y, int width, int height) const;
 
      // Replace the portion starting at (row, col) with the given image
      // Clamps the image if it doesn't fit on this image
@@ -69,5 +71,41 @@ namespace agl
 
      // return the height of the image
      int height() const;
+
+     // my methods
+
+     // returns image an rotated around point x,y inside the original image
+     // takes angle in degrees
+     ppm_image rotate(float angle, int x, int y) const;
+
+     // returns an inverted image
+     ppm_image invert() const;
+
+     // returns an image with the color channels shifted
+     // r -> g -> b
+     ppm_image channelShift() const;
+
+     // takes lightest rgb values between images, not lightest overall pixels
+     ppm_image lightestblend(const ppm_image& other) const;
+
+     // uses the lighest pixel based on adding up rbg values
+     ppm_image lightestabsolute(const ppm_image& other) const;
+
+     // box blur
+     ppm_image boxblur() const;
+
+     // brings the overall color ratio close to 1:1:1
+     ppm_image equalize() const;
+
+     
+
+  protected:
+      int h = 0;
+      int w = 0;
+      ppm_pixel** data2D = NULL;
+
+      // helper function that finds where the new coordinate is
+      // takes angle in radians
+      std::list <int> findRotatedCoord(float angle, int xpos, int ypos, int cx, int cy) const;
   };
 }
