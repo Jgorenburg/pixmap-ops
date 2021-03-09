@@ -46,6 +46,9 @@ pixmap-ops/build $ ../bin/pixmap_art
 ## Image operators
 
 TODO: Document the features of your PPM image class here. Include example images.
+![Original](/images/image.jpg)
+
+
 
 Rotate:
 
@@ -57,7 +60,8 @@ Invert:
 
 Invert performs the operation I' = 255 - I on every pixel in the image and returns a new image.
 
-![alt text](https://github.com/Jgorenburg/pixmap-ops/blob/feep.ppm)
+
+
 
 Channelshift:
 
@@ -73,6 +77,7 @@ Boxblur:
 
 Boxblur applies a boxblur on the image by making each pixel's color the average of its surrounding pixels and then returning the new image.
 
+![Boxblurred](/images/boxblur.jpg)
 
 Equalize:
 
