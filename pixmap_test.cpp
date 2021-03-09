@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 	ppm_image final;
 	image.load("../images/image.ppm");
 
-	final = image.rotate(45, 0, 0);
+	/*final = image.rotate(45, 0, 0);
 	final.save("../images/rotate.ppm");
 
 	final = image.invert();
@@ -41,9 +41,9 @@ int main(int argc, char** argv)
 
 	final = image.boxblur();
 	final.save("../images/boxblur.ppm");
-
+	*/
 	final = image.equalize();
-	final.save("../images.equalize.ppm");
+	final.save("../images/equalize.ppm");
 
 
 
