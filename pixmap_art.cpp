@@ -14,12 +14,36 @@ int main(int argc, char** argv)
 	ppm_image boxblur;
 	ppm_image lightengrey;
 	ppm_image lighten;
+	ppm_image final;
+
+	image.load("../images/image.ppm");
+
+	final = image.rotate(45, 0, 0);
+	final.save("../images/rotate.ppm");
+
+	final = image.invert();
+	final.save("../images/invert.ppm");
+
+	final = image.channelShift();
+	final.save("../images/channelShift.ppm");
+
+	ppm_image earth;
+	earth.load("../images/earth-ascii.ppm");
+	earth = earth.resize(image.width(), image.height());
+	final = image.lightestabsolute(earth);
+	final.save("../images/lightabs.ppm");
+	final = image.lightestblend(earth);
+	final.save("../images/lightblend.ppm");
+
+	final = image.boxblur();
+	final.save("../images/boxblur.ppm");
+
+	final = image.equalize();
+	final.save("../images/equalize.ppm");
 
 
 
-	cout << "opening image\n";
-	image.load("../images/feep.ppm");
-	cout << "image loaded\n";
+
 
 	grey = image.grayscale();
 	cout << "greyscale\n";
